@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="167.0" style="-fx-background-color: transparent;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimersController">
+   <children>
+      <ListView fx:id="topListView" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="jungleListView" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="midListView" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="adcListView" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="supportListView" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</VBox>

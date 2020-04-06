@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="120.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="131.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
+      <children>
+            <TextField fx:id="locationField" editable="false" layoutX="14.0" layoutY="13.0" prefHeight="25.0" prefWidth="311.0" text="C:\Riot Games\League of Legends" />
+            <Button fx:id="helpButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Help" />
+            <Button fx:id="browseButton" layoutX="332.0" layoutY="13.0" mnemonicParsing="false" onAction="#browseFile" prefHeight="25.0" prefWidth="76.0" text="Browse" />
+            <Button fx:id="startButton" layoutX="332.0" layoutY="84.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Start" />
+            <Button fx:id="resetButton" layoutX="242.0" layoutY="84.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Reset" />
+            <TextField fx:id="ipField" layoutX="14.0" layoutY="49.0" prefHeight="25.0" prefWidth="138.0" promptText="Server IP" />
+            <TextField fx:id="portField" layoutX="160.0" layoutY="49.0" prefHeight="25.0" prefWidth="76.0" promptText="Port" />
+            <Button fx:id="joinButton" layoutX="242.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Join" />
+            <Button fx:id="hostButton" layoutX="332.0" layoutY="49.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Host" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

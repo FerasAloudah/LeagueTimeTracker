@@ -1,0 +1,17 @@
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #808e9b;
+    -fx-font-size: 16px;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+
+.list-view .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+}

@@ -1,8 +1,8 @@
 package client;
 
-import tracker.Note;
 import lombok.Builder;
 import lombok.Data;
+import tracker.Note;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

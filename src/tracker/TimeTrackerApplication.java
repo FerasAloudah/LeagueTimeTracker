@@ -1,29 +1,27 @@
-import client.Client;
-import server.Server;
-import tracker.Note;
-import tracker.NoteParser;
-import tracker.NoteTracker;
+package tracker;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
-public class Main extends Application {
+public class TimeTrackerApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(new File("fxml/home.fxml").toURI().toURL());
+        Parent root = FXMLLoader.load(TimeTrackerApplication.class.getResource("/home.fxml"));
         primaryStage.setScene(new Scene(root, 422, 120));
         primaryStage.setTitle("Time Tracker v1.0");
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        primaryStage.setOnHiding(e -> {
+            System.exit(0);
+        });
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         launch(args);
     }
 }

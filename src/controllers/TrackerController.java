@@ -8,7 +8,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import lombok.Data;
 import org.jnativehook.GlobalScreen;

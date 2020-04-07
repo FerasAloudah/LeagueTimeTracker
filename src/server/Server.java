@@ -45,6 +45,7 @@ public class Server {
                     thread.start();
                 }
             } catch (IOException e) {
+                controller.getWindow().hide();
                 e.printStackTrace();
             }
         });

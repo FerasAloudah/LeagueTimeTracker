@@ -1,15 +1,14 @@
 package client;
 
 import controllers.ServerController;
-import tracker.Note;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tracker.Note;
 import tracker.NoteTracker;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
 
 @Data
 @NoArgsConstructor
@@ -43,6 +42,7 @@ public class Client {
             output.writeObject(note);
             controller.setTitle("Connected to: " + host + ":" + port);
         } catch (IOException e) {
+            controller.getWindow().hide();
             e.printStackTrace();
         }
     }

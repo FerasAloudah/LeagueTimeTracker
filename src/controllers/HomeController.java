@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 import server.Server;
 import tracker.Note;
 import tracker.NoteTracker;
+import tracker.TimeTrackerApplication;
 
 import java.io.File;
 import java.io.IOException;
@@ -153,7 +154,7 @@ public class HomeController {
     }
 
     private Parent loadTracker() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("fxml/tracker.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(TimeTrackerApplication.class.getResource("/tracker.fxml"));
         loader.load();
 
         trackerController = loader.getController();
@@ -185,7 +186,7 @@ public class HomeController {
     }
 
     private ServerController setUpServerWindow() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("fxml/server.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(TimeTrackerApplication.class.getResource("/server.fxml"));
         loader.load();
         ServerController serverController = loader.getController();
 

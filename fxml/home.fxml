@@ -10,15 +10,15 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="131.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
       <children>
             <TextField fx:id="locationField" editable="false" layoutX="14.0" layoutY="13.0" prefHeight="25.0" prefWidth="311.0" text="F:\Riot Games\League of Legends" />
-            <Button fx:id="helpButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#showHelp" prefHeight="25.0" prefWidth="76.0" text="Help" />
             <Button fx:id="browseButton" layoutX="332.0" layoutY="13.0" mnemonicParsing="false" onAction="#browseFile" prefHeight="25.0" prefWidth="76.0" text="Browse" />
-            <Button fx:id="toggleButton" layoutX="332.0" layoutY="84.0" mnemonicParsing="false" onAction="#toggleTracker" prefHeight="25.0" prefWidth="76.0" text="Start" />
-            <Button fx:id="resetButton" layoutX="242.0" layoutY="84.0" mnemonicParsing="false" onAction="#resetTracker" prefHeight="25.0" prefWidth="76.0" text="Reset" />
+            <TextField fx:id="nameField" layoutX="14.0" layoutY="48.0" prefHeight="25.0" prefWidth="89.0" promptText="Name" />
             <TextField fx:id="ipField" layoutX="115.0" layoutY="48.0" prefHeight="25.0" prefWidth="113.0" promptText="Server IP" />
             <TextField fx:id="portField" layoutX="242.0" layoutY="48.0" prefHeight="25.0" prefWidth="76.0" promptText="Port" />
             <Button fx:id="joinButton" layoutX="332.0" layoutY="49.0" mnemonicParsing="false" onAction="#connectToServer" prefHeight="25.0" prefWidth="76.0" text="Join" />
+            <Button fx:id="helpButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#showHelp" prefHeight="25.0" prefWidth="76.0" text="Help" />
             <Button fx:id="hostButton" layoutX="152.0" layoutY="84.0" mnemonicParsing="false" onAction="#startServer" prefHeight="25.0" prefWidth="76.0" text="Host" />
-            <TextField fx:id="nameField" layoutX="14.0" layoutY="48.0" prefHeight="25.0" prefWidth="89.0" promptText="Name" />
+            <Button fx:id="resetButton" layoutX="242.0" layoutY="84.0" mnemonicParsing="false" onAction="#resetTracker" prefHeight="25.0" prefWidth="76.0" text="Reset" />
+            <Button fx:id="toggleButton" layoutX="332.0" layoutY="84.0" mnemonicParsing="false" onAction="#toggleTracker" prefHeight="25.0" prefWidth="76.0" text="Start" />
       </children>
     </AnchorPane>
   </children>

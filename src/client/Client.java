@@ -1,49 +1,85 @@
 package client;
 
+import controllers.ServerController;
 import tracker.Note;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tracker.NoteTracker;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 @Data
 @NoArgsConstructor
 public class Client {
     private ObjectOutputStream output;
-    private String host;
-    private int port;
-    private boolean connected;
+    private Socket socket;
+    private Thread connection;
+    private ServerController controller;
+    private NoteTracker tracker;
+    private String name;
 
-    public void connect(String host, int port) {
-        if (connected) {
+    public Client(ServerController controller, NoteTracker tracker, String name, String host, int port) {
+        if (connection != null && connection.isAlive()) {
             return;
         }
 
+        this.controller = controller;
+        this.tracker = tracker;
+        this.name = name;
         try {
-            Socket socket = new Socket(host, port);
-            System.out.println("Connected. \n");
+            socket = new Socket(host, port);
             output = new ObjectOutputStream(socket.getOutputStream());
             ClientThread clientThread = ClientThread.builder()
                     .socket(socket)
                     .client(this)
                     .build();
-            Thread thread = new Thread(clientThread);
-            thread.start();
-            connected = true;
+            connection = new Thread(clientThread);
+            connection.start();
+
+            Note note = new Note(name);
+            output.writeObject(note);
+            controller.setTitle("Connected to: " + host + ":" + port);
         } catch (IOException e) {
-            System.out.println(e.toString() + '\n');
+            e.printStackTrace();
+        }
+    }
+
+    public void connect(ServerController controller, NoteTracker tracker, String name, String host, int port) {
+        if (connection != null && connection.isAlive()) {
+            return;
+        }
+
+        this.controller = controller;
+        this.tracker = tracker;
+        try {
+            socket = new Socket(host, port);
+            output = new ObjectOutputStream(socket.getOutputStream());
+            ClientThread clientThread = ClientThread.builder()
+                    .socket(socket)
+                    .client(this)
+                    .build();
+            connection = new Thread(clientThread);
+            connection.start();
+
+            Note note = new Note(name);
+            output.writeObject(note);
+            controller.setTitle("Connected to: " + host + ":" + port);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void sendNote(Note note) {
         try {
-            System.out.println("Client sendNote: " + note);
+            note.setName(name);
+            controller.println(note.getName() + ": " + note.getRole() + " - " + note.getSummonerSpell());
             output.writeObject(note);
             output.flush();
-        } catch (IOException ex) {
-            System.err.println(ex);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

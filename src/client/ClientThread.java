@@ -21,11 +21,11 @@ public class ClientThread implements Runnable {
             input = new ObjectInputStream(socket.getInputStream());
             while (true) {
                 Note note = (Note) input.readObject();
-                System.out.println("ClientThread: " + note);
+                client.getTracker().addNote(note);
+                client.getController().println(note.getName() + ": " + note.getRole() + " - " + note.getSummonerSpell());
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error reading from server: " + e.getMessage());
-            client.setConnected(false);
+            e.printStackTrace();
         }
     }
 }

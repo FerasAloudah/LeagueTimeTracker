@@ -1,47 +1,62 @@
 package server;
 
+import controllers.ServerController;
+import javafx.application.Platform;
+import lombok.Data;
 import tracker.Note;
+import tracker.NoteTracker;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+@Data
 public class Server {
-    List<ClientConnection> connections;
-    ServerSocket serverSocket;
+    private List<ClientConnection> connections;
+    private ServerController controller;
+    private ServerSocket serverSocket;
+    private Thread server;
+    private NoteTracker tracker;
+    private String name;
+    private String title;
 
-    public Server(int port) {
-        new Thread(() -> {
+    public Server(ServerController controller, NoteTracker tracker, String name, int port) {
+        this.controller = controller;
+        this.tracker = tracker;
+        this.name = name;
+        title = "Running on port: " + port + " | Connected: ";
+        server = new Thread(() -> {
             try {
                 serverSocket = new ServerSocket(port);
                 connections = new ArrayList<>();
+                setTitle();
 
-//                Platform.runLater(() -> System.out.println("New server started at " + new Date() + '\n'));
-                System.out.println("New server started at " + new Date() + '\n');
-                int i = 1;
                 while (true) {
                     Socket socket = serverSocket.accept();
-                    System.out.println("client " + (i++) +  " connected");
                     ClientConnection connection = ClientConnection.builder()
                             .socket(socket)
                             .server(this)
                             .build();
                     connections.add(connection);
-
+                    setTitle();
                     Thread thread = new Thread(connection);
                     thread.start();
                 }
             } catch (IOException e) {
-                System.out.println(e.toString() + '\n');
+                e.printStackTrace();
             }
-        }).start();
+        });
+        server.start();
     }
 
     public void broadcastNote(ClientConnection sender, Note note) {
-        System.out.println("broadcastNote: " + note);
+        if (sender == null) {
+            note.setName(name);
+        }
+
+        controller.println(note.getName() + ": " + note.getRole() + " - " + note.getSummonerSpell());
         List<ClientConnection> connectionsToRemove = new ArrayList<>();
         for (ClientConnection connection : connections) {
             if (connection != sender) {
@@ -53,5 +68,12 @@ public class Server {
             }
         }
         connections.removeAll(connectionsToRemove);
+        if (connectionsToRemove.size() > 0) {
+            setTitle();
+        }
+    }
+
+    public void setTitle() {
+        Platform.runLater(() -> controller.setTitle(title + connections.size()));
     }
 }

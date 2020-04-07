@@ -11,13 +11,18 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Note implements Serializable {
     private static final long serialVersionUID = 8581703854704855954L;
+    private String name;
     private String role;
-    private int roleIndex;
     private String summonerSpell;
+    private int roleIndex;
     private int time;
 
-    public void decreaseSecond() {
-        time--;
+    public Note(String name) {
+        this.name = name;
+    }
+
+    public void decreaseSeconds() {
+        --time;
     }
 
     public boolean isFinished() {
@@ -33,6 +38,6 @@ public class Note implements Serializable {
     }
 
     public String toString() {
-        return String.join(" ", summonerSpell, "-", timeInMinutes());
+        return summonerSpell + " - " + timeInMinutes();
     }
 }

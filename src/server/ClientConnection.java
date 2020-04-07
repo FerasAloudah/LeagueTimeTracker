@@ -6,10 +6,12 @@ import lombok.Data;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 @Data
 @Builder
 public class ClientConnection implements Runnable {
+    private String name;
     private Socket socket;
     private Server server;
     private ObjectInputStream input;
@@ -21,15 +23,20 @@ public class ClientConnection implements Runnable {
             input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());
 
+            Note note = (Note) input.readObject();
+            name = note.getName();
+
+            server.getController().println(name + " connected!");
+
             while (true) {
-                Note note = (Note) input.readObject();
+                note = (Note) input.readObject();
+                server.getTracker().addNote(note);
                 server.broadcastNote(this, note);
-//                Platform.runLater(() -> {
-                    System.out.println("ClientConnection run: " + note + "\n");
-//                });
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("ClientConnection Error");
+            server.getController().println(name + " left!");
+            server.getConnections().remove(this);
+            server.setTitle();
             e.printStackTrace();
         } finally {
             try {
@@ -41,7 +48,6 @@ public class ClientConnection implements Runnable {
     }
 
     public void sendNote(Note note) throws IOException {
-        System.out.println("ClientConnection sendNote: " + note);
         output.writeObject(note);
         output.flush();
     }

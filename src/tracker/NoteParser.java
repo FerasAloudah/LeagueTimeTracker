@@ -10,7 +10,7 @@ public class NoteParser {
     private ArgumentConstants argumentConstants;
 
     public NoteParser() {
-        try (Reader reader = new FileReader(TimeTrackerApplication.class.getResource("/constants.json").getPath())) {
+        try (Reader reader = new FileReader("constants.json")) {
             argumentConstants = new Gson().fromJson(reader, ArgumentConstants.class);
         } catch (IOException e) {
             e.printStackTrace();

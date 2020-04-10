@@ -17,6 +17,7 @@ import tracker.Note;
 import tracker.NoteTracker;
 import tracker.TimeTrackerApplication;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -64,16 +65,23 @@ public class HomeController {
 
     private Server server;
 
-    private boolean trackerStarted;
-
     @FXML
-    void browseFile(ActionEvent event) {
+    void browseFile(ActionEvent event) throws IOException {
         DirectoryChooser dc = new DirectoryChooser();
         File selectedFile = dc.showDialog(browseButton.getScene().getWindow());
 
         if (selectedFile != null) {
             locationField.setText(selectedFile.getAbsolutePath());
         }
+
+        Path myNotesPath = Paths.get(selectedFile.getAbsolutePath(), "MyNotes.txt");
+        File myNotesFile = myNotesPath.toFile();
+
+        if (!myNotesFile.exists()) {
+            myNotesFile.createNewFile();
+        }
+
+        tracker.setMyNotesFile(myNotesFile);
     }
 
     @FXML
@@ -127,30 +135,26 @@ public class HomeController {
 
     @FXML
     void toggleTracker(ActionEvent event) throws IOException {
-        if (trackerStarted) {
-            trackerController.getTimeline().stop();
-            trackerController.getWindow().hide();
-            toggleButton.setText("Start");
-        } else {
-            trackerController.getTimeline().play();
-            toggleButton.setText("Stop");
 
-            Path myNotesPath = Paths.get(locationField.getText(), "MyNotes.txt");
-            File myNotesFile = myNotesPath.toFile();
-
-            if (!myNotesFile.exists()) {
-                myNotesFile.createNewFile();
-            }
-
-            tracker.setMyNotesFile(myNotesFile);
-        }
-        trackerStarted = !trackerStarted;
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
         tracker = new NoteTracker();
         setUpTrackerWindow();
+
+        if (!new File(locationField.getText()).exists()) {
+            return;
+        }
+
+        Path myNotesPath = Paths.get(locationField.getText(), "MyNotes.txt");
+        File myNotesFile = myNotesPath.toFile();
+
+        if (!myNotesFile.exists()) {
+            myNotesFile.createNewFile();
+        }
+
+        tracker.setMyNotesFile(myNotesFile);
     }
 
     private Parent loadTracker() throws IOException {
@@ -164,9 +168,13 @@ public class HomeController {
     }
 
     private void setUpTrackerStage(Scene scene) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+
         Stage trackerStage = new Stage();
-        trackerStage.setX(915);
-        trackerStage.setY(310);
+        trackerStage.setX(width * 0.4766);
+        trackerStage.setY(height * 0.287);
         trackerStage.initStyle(StageStyle.TRANSPARENT);
         trackerStage.setScene(scene);
         trackerStage.setAlwaysOnTop(true);

@@ -35,6 +35,7 @@ public class Server {
 
                 while (true) {
                     Socket socket = serverSocket.accept();
+                    System.out.println(socket);
                     ClientConnection connection = ClientConnection.builder()
                             .socket(socket)
                             .server(this)

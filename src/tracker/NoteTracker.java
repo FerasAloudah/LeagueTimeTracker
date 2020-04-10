@@ -45,6 +45,9 @@ public class NoteTracker {
     }
 
     public boolean isFileModified() {
+        if (myNotesFile == null) {
+            return false;
+        }
         long lastModified = myNotesFile.lastModified();
         if (currentTime < lastModified) {
             currentTime = lastModified;

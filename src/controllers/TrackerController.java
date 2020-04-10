@@ -111,6 +111,7 @@ public class TrackerController implements NativeKeyListener {
         }));
 
         timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     public void runListener() {

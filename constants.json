@@ -1,0 +1,111 @@
+{
+  "roles": [
+    {
+      "name": "Top",
+      "inputs": [
+        "TOP"
+      ],
+      "index": 0
+    },
+    {
+      "name": "Jungle",
+      "inputs": [
+        "JUNGLE", "JG"
+      ],
+      "index": 1
+    },
+    {
+      "name": "Mid",
+      "inputs": [
+        "MID"
+      ],
+      "index": 2
+    },
+    {
+      "name": "ADC",
+      "inputs": [
+        "ADC"
+      ],
+      "index": 3
+    },
+    {
+      "name": "Support",
+      "inputs": [
+        "SUPPORT", "SUPP"
+      ],
+      "index": 4
+    }
+  ],
+  "summonerSpells": [
+    {
+      "name": "F",
+      "inputs": [
+        "FLASH", "F"
+      ],
+      "timer": 300
+    },
+    {
+      "name": "H",
+      "inputs": [
+        "HEAL", "H"
+      ],
+      "timer": 240
+    },
+    {
+      "name": "B",
+      "inputs": [
+        "BARRIER", "B"
+      ],
+      "timer": 180
+    },
+    {
+      "name": "E",
+      "inputs": [
+        "EXHAUST", "E"
+      ],
+      "timer": 210
+    },
+    {
+      "name": "I",
+      "inputs": [
+        "IGNITE", "I"
+      ],
+      "timer": 180
+    },
+    {
+      "name": "C",
+      "inputs": [
+        "CLEANSE", "C"
+      ],
+      "timer": 210
+    },
+    {
+      "name": "G",
+      "inputs": [
+        "GHOST", "G"
+      ],
+      "timer": 180
+    },
+    {
+      "name": "T",
+      "inputs": [
+        "TELEPORT", "TP", "T"
+      ],
+      "timer": 420
+    }
+  ],
+  "reductions": [
+    {
+      "inputs": [
+        "RUNES", "R"
+      ],
+      "reduction": 0.05
+    },
+    {
+      "inputs": [
+        "BOOTS", "LB"
+      ],
+      "reduction": 0.1
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="120.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<VBox prefHeight="120.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="131.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
       <children>
@@ -15,10 +15,9 @@
             <TextField fx:id="ipField" layoutX="115.0" layoutY="48.0" prefHeight="25.0" prefWidth="113.0" promptText="Server IP" />
             <TextField fx:id="portField" layoutX="242.0" layoutY="48.0" prefHeight="25.0" prefWidth="76.0" promptText="Port" />
             <Button fx:id="joinButton" layoutX="332.0" layoutY="49.0" mnemonicParsing="false" onAction="#connectToServer" prefHeight="25.0" prefWidth="76.0" text="Join" />
-            <Button fx:id="helpButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#showHelp" prefHeight="25.0" prefWidth="76.0" text="Help" />
-            <Button fx:id="hostButton" layoutX="152.0" layoutY="84.0" mnemonicParsing="false" onAction="#startServer" prefHeight="25.0" prefWidth="76.0" text="Host" />
-            <Button fx:id="resetButton" layoutX="242.0" layoutY="84.0" mnemonicParsing="false" onAction="#resetTracker" prefHeight="25.0" prefWidth="76.0" text="Reset" />
-            <Button fx:id="toggleButton" layoutX="332.0" layoutY="84.0" mnemonicParsing="false" onAction="#toggleTracker" prefHeight="25.0" prefWidth="76.0" text="Start" />
+            <Button fx:id="resetButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#resetTracker" prefHeight="25.0" prefWidth="76.0" text="Reset" />
+            <Button fx:id="helpButton" layoutX="103.0" layoutY="84.0" mnemonicParsing="false" onAction="#showHelp" prefHeight="25.0" prefWidth="76.0" text="Help" />
+            <Button fx:id="hostButton" layoutX="332.0" layoutY="84.0" mnemonicParsing="false" onAction="#startServer" prefHeight="25.0" prefWidth="76.0" text="Host" />
       </children>
     </AnchorPane>
   </children>
